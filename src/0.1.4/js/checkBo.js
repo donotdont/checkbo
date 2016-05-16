@@ -19,7 +19,7 @@
             }
             function k() {
                 var a = b(this).is(":checked");
-                b(this).closest("label").toggleClass("checked", a)
+                b(this).closest("label").length > 0 ? b(this).closest("label").toggleClass("checked", a) : b(this).closest("div.cb-switcher").toggleClass("checked", a).switcherChecker()
             }
             function l(a, b, c) {
                 a.parent(f).hasClass("checked") ? a.text(c) : a.text(b)
@@ -35,6 +35,7 @@
                 h = e.find(".cb-radio"),
                 n = e.find(".cb-switcher"),
                 p = f.find("input:checkbox"),
+                pn = n.find("input:checkbox"),
                 q = h.find("input:radio");
             p.wrap('<span class="cb-inner"><i></i></span>');
             q.wrap('<span class="cb-inner"><i></i></span>');
@@ -53,6 +54,7 @@
                 a.find(this.input).change()
             };
             p.on("change", k);
+            pn.on("change", k);
             q.on("change", k);
             f.find("a").on("click", function (a) {
                 a.stopPropagation()
@@ -70,7 +72,8 @@
                 m(b(this))
             });
             b.fn.toggleCheckbox = function () {
-                this.prop("checked", !this.is(":checked"))
+                this.prop("checked", !this.is(":checked"));
+                $(this).trigger("change")
             };
             b.fn.switcherChecker = function () {
                 var a = b(this),
