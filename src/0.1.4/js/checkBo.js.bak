@@ -19,7 +19,7 @@
             }
             function k() {
                 var a = b(this).is(":checked");
-                b(this).closest("label").toggleClass("checked", a)
+                b(this).closest("label").length > 0 ? b(this).closest("label").toggleClass("checked", a) : b(this).closest("div.cb-switcher").toggleClass("checked", a).switcherChecker()
             }
             function l(a, b, c) {
                 a.parent(f).hasClass("checked") ? a.text(c) : a.text(b)
